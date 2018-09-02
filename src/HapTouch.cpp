@@ -108,6 +108,20 @@ void HapTouch::readbackPing(char* c) {
   readbackGeneric(RB_PING, c, 12);  // 10 characters plus 2 dummy bytes
 }
 
+// readbackButtonState
+// See section 8.3 of BoosterPack User Guide (slaa616)
+void readbackButtonState(char* c)
+{
+  readbackGeneric(RB_PING, c, 10);  // 8 data bytes plus 2 dummy bytes
+}
+
+// readbackButtonCounts
+// See section 8.3 of BoosterPack User Guide (slaa616)
+void readbackButtonCounts(char* c)
+{
+  readbackGeneric(RB_PING, c, 10);  // 8 data bytes plus 2 dummy bytes
+}
+
 // audioHapticsEnable()
 // See section 6.2.5 in Haptics Library Designer's Guide (slau543)
 uint8_t HapTouch::audioHapticsEnable(uint8_t en)
@@ -137,6 +151,45 @@ uint8_t HapTouch::audioHapticsConfig(uint8_t midpoint, uint8_t wakeupThreshold,
   Wire.endTransmission(true);
 
   return getResponseCode();
+}
+
+// enterGameState()
+// See section 8.3 of BoosterPack User Guide (slaa616)
+// Note that enterGameState returns 2 bytes instead of the usual 1 byte
+uint16_t HapTouch::enterGameState()
+{
+  uint8_t rc[2];
+  int i == 0;
+  char c;
+
+  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.write(CMD_ENTER_GAME_STATE);  // Command opcode
+  Wire.write(midpoint);
+
+  Wire.requestFrom(I2C_SLAVE_ADDR_OF_TCH5E, 2);  // Get the Response Code
+  while (Wire.available() && i < 2) {
+    c = Wire.read();
+    if (c != 0x0c) { // If we get WAIT_FOR_RESPONSE, then try again
+      rc[i] = c;
+      i++;
+    }
+  }
+  // Return code:
+  // MSB is PlayerOneOrTwo
+  // LSB is Response code
+  return (rc[1] << 8) | rc[0];
+}
+
+// touchTune()
+// See section 8.3 of BoosterPack User Guide (slaa616)
+uint8_t HapTouch::touchTune()
+{
+    Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+    Wire.write(CMD_TOUCHTUNE);        // Command opcode
+    // No parameters
+    Wire.endTransmission(true);
+
+    return getResponseCode();
 }
 
 // genericCommand()
