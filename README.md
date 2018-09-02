@@ -1,7 +1,7 @@
 HapTouch BoosterPack Library
 =============================================================================
 
-This Energia library supports the [HapTouch BoosterPack][1].
+This Energia library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
 <Add comments about being designed by Element 14, links to press release. Obtained a couple when Newark put them on a fire sale. Limited usefulness until now due to lack of availability of the TI HapTouch library ... link ...
 Reverse engineered my own library based on available datasheets .... links.... and testing.
@@ -16,13 +16,14 @@ Create an object and call begin method
 - Note about how to deal with SetModule
 - Other assumptions on operation
 - How to use bit-bang SPI if desired (for example, my SWI2C library)
+- Note about constructor variations. BoosterPack expecting I2C on pins 14/15, so default module is 0. If using the "Host Connector", it is possible to use different I2C module. Old BoosterPack standard had I2C at 14/15, new standard is at pins 9/10. 
 
-Usage Notes
----------------------------
+Operational Notes
+-----------------
 Existing TCH5E code still running, so touching the cap-touch buttons will impact operation
 Can use some undocumented commands to "disable" and re-enable the board (the audio commands might also do this).
 Power issues LRA vs ERM
-Should work with any MSP430. The smaller LaunchPads (like G2 or FR2433) make it difficult to use the LaunchPad buttons without accidentally hitting the captouch buttons on the BoosterPack, although you can use the 6-pin header ("Host Connector") and separate the BoosterPack from the LaunchPad. 
+Should work with any MSP430. The smaller LaunchPads (like G2 or FR2433) make it difficult to use the LaunchPad buttons without accidentally hitting the captouch buttons on the BoosterPack, although you can use the 6-pin header ("Host Connector") and separate the BoosterPack from the LaunchPad.
 
 
 
