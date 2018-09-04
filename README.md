@@ -3,29 +3,62 @@ HapTouch BoosterPack Library
 
 This Energia library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
-<Add comments about being designed by Element 14, links to press release. Obtained a couple when Newark put them on a fire sale. Limited usefulness until now due to lack of availability of the TI HapTouch library ... link ...
-Reverse engineered my own library based on available datasheets .... links.... and testing.
-Note error in datasheet for some params/command IDs.
-List commands and IDs, params and IDs, effects and IDs, error codes and IDs (where available).
+The HapTouch BoosterPack was produced and available through Element14/Newark/Farnell based on a [reference design][1] from Texas Instruments.
+
+The HaptTouch BoosterPacks is no longer supported, although it is possible to find some boards for sale with some diligent searching. An [SDK][4] which was previously available contains details on how to program the TCH5E controller on the BoosterPack and also how to interface with the factory-programmed code on the TCH5E controller with I2C. However, the SDK is [no longer available][5].
+
+This library provides an I2C interface to the BoosterPack based on still-available documentation and experimenting with the BoosterPack.
 
 Usage
 -----
 _See the sketch included in the `examples` folder._
 
-Create an object and call begin method
-- Note about how to deal with SetModule
-- Other assumptions on operation
-- How to use bit-bang SPI if desired (for example, my SWI2C library)
-- Note about constructor variations. BoosterPack expecting I2C on pins 14/15, so default module is 0. If using the "Host Connector", it is possible to use different I2C module. Old BoosterPack standard had I2C at 14/15, new standard is at pins 9/10. 
+First, create a HapTouch object:
+
+    HapTouch myHapTouch;
+
+Note that the above constructor has two default parameters: the I2C address of the HapTouch BoosterPack and the I2C module number for the Wire library. The default values are typically the correct values, so the constructor can be called without arguments, but the ability to change those values is available if needed.
+
+Next, initialize the interface:
+
+    myHapTouch.begin();
+
+This intitializes the I2C interface. It calls Wire.setModule() and Wire.begin(). If you want to initialize I2C separately in your sketch, the above method does not need to be called.
+
+Then, call any of the HapTouch commands as needed for your sketch. These commands are explained in the HapTouch library [designer's guide][3] and in the BoosterPack [user's guide][2]:
+
+    uint8_t playEffect(uint8_t effect, int duration, uint8_t override);
+    uint8_t playSequence(uint8_t* effect_list, int effect_count,
+                         uint8_t repeat_count, uint8_t override);
+    uint8_t stopPlayback();
+    void readbackPing(char* c);
+    void readbackButtonState(char* c);
+    void readbackButtonCounts(char* c);
+    uint8_t audioHapticsEnable(uint8_t en);
+    uint8_t audioHapticsConfig(uint8_t midpoint, uint8_t wakeupThreshold,
+                               uint8_t inputMin, uint8_t inputMax,
+                               uint8_t strengthAtFloor, uint8_t strengthMax);
+    uint16_t enterGameState();
+    uint8_t touchTune();
+
+The following commands are available for experimentation or to access undocumented commands:
+
+    void readbackGeneric(uint8_t readback_index, char* c, uint8_t n);
+    uint8_t genericCommand(uint8_t command, uint8_t* params,
+                           uint8_t param_length);
+    uint8_t getResponseCode();
 
 Operational Notes
 -----------------
-Existing TCH5E code still running, so touching the cap-touch buttons will impact operation
-Can use some undocumented commands to "disable" and re-enable the board (the audio commands might also do this).
-Power issues LRA vs ERM
-Should work with any MSP430. The smaller LaunchPads (like G2 or FR2433) make it difficult to use the LaunchPad buttons without accidentally hitting the captouch buttons on the BoosterPack, although you can use the 6-pin header ("Host Connector") and separate the BoosterPack from the LaunchPad.
+- The HapTouch BoosterPack uses pins 14/15 for the I2C interface. These pins are typically defined as module 0 in Energia for the various BoosterPacks.
+- Since the factory-programmed firmware is still running on the TCH5E controlelr on the BoosterPack, touching the cap-touch buttons will generate the programmed haptic response
+- Some LaunchPads may not be able to supply enough power for the haptic actuators. A symptom of this is if the board resets whenever a haptic effect is played. The ERM actuator uses more power than the LRA, so it may be possible to set the BoosterPack to LRA mode and still use LaunchPad power. As an alternative, it may be necessary to use an external 3V3 power source instead of the LaunchPad regulator.
+- While this library should work with any of the MSP430 LaunchPad variants, the form factors of the smaller boards (like the G2) make it difficult to use the LaunchPad buttons without affecting the CapTouch buttons on the BoosterPack.
+- The BoosterPack includes a 2x3 "Host Connector" with power and I2C signals which can be used to interface with the board instead of using the standard BoosterPack 20/40 pin connector.
 
-
+Future Enhancements
+-------------------
+- Currently, this library requires the use of the Wire library. A future iteration may include support for a software I2C library (like this [one][9])
 
 References
 ----------
@@ -45,3 +78,4 @@ References
 [6]: https://forum.43oh.com/topic/4786-msp430tch5e-haptouch-is-available/
 [7]: https://www.element14.com/community/roadTests/1268
 [8]: https://www.element14.com/community/docs/DOC-65467/
+[9]: https://gitlab.com/Andy4495/SWI2C

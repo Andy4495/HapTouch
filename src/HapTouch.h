@@ -12,18 +12,20 @@ https://gitlab.com/Andy4495/HapTouch
 #ifndef HAPTOUCH_H
 #define HAPTOUCH_H
 
+#include <Arduino.h>
+
 #define DEFAULT_TCH5E_I2C_ADDR 0x10
 #define DEFAULT_I2C_MODULE     0x00
 
 class HapTouch {
 public:
-  Haptouch(uint8_t i2c_module  = DEFAULT_I2C_MODULE,
+  HapTouch(uint8_t i2c_module  = DEFAULT_I2C_MODULE,
            uint8_t i2c_address = DEFAULT_TCH5E_I2C_ADDR);
 
   void begin();
   uint8_t playEffect(uint8_t effect, int duration, uint8_t override);
   uint8_t playSequence(uint8_t* effect_list, int effect_count, uint8_t repeat_count,
-               uint8_t override);
+                       uint8_t override);
   uint8_t stopPlayback();
   void readbackPing(char* c);
   void readbackButtonState(char* c);
@@ -31,8 +33,8 @@ public:
   void readbackGeneric(uint8_t readback_index, char* c, uint8_t n);
   uint8_t audioHapticsEnable(uint8_t en);
   uint8_t audioHapticsConfig(uint8_t midpoint, uint8_t wakeupThreshold,
-                     uint8_t inputMin, uint8_t inputMax,
-                     uint8_t strengthAtFloor, uint8_t strengthMax);
+                             uint8_t inputMin, uint8_t inputMax,
+                             uint8_t strengthAtFloor, uint8_t strengthMax);
   uint16_t enterGameState();
   uint8_t touchTune();
   uint8_t genericCommand(uint8_t command, uint8_t* params, uint8_t param_length);
@@ -65,7 +67,7 @@ public:
 
 private:
   uint8_t _i2c_addr;
-  uint8_T _i2c_module;
+  uint8_t _i2c_module;
 
 };
 

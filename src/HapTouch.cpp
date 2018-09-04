@@ -1,4 +1,4 @@
-/* HapTouch.h
+/* HapTouch.cpp
 
 Library to interface with HapTouch BoosterPack.
 
@@ -28,7 +28,7 @@ HapTouch::HapTouch(uint8_t i2c_module,
 // on I2C bus and don't want different devices calling Wire.begin().
 void HapTouch::begin()
 {
-  Wire.setModule(0);        // G2 need to use I2C on pins 14/15
+  Wire.setModule(_i2c_module);        // G2 need to use I2C on pins 14/15
   Wire.begin();             // join i2c bus (address optional for master)
 }
 
@@ -36,7 +36,7 @@ void HapTouch::begin()
 // See section 6.2.1 in Haptics Library Designer's Guide (slau543)
 uint8_t HapTouch::playEffect(uint8_t effect, int duration, uint8_t override)
 {
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_PLAY_EFFECT);     // Command opcode
   Wire.write(effect);
   Wire.write(duration & 0xff);     // LSB
@@ -53,7 +53,7 @@ uint8_t HapTouch::playSequence(uint8_t* effect_list, int effect_count, uint8_t r
 {
   int i;
 
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_PLAY_SEQ);              // Command opcode
   for (i = 0; i < effect_count; i++) {
     Wire.write(effect_list[i * 2]);      // Effect
@@ -71,7 +71,7 @@ uint8_t HapTouch::playSequence(uint8_t* effect_list, int effect_count, uint8_t r
 // See section 6.2.3 in Haptics Library Designer's Guide (slau543)
 uint8_t HapTouch::stopPlayback() {
 
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_STOP_PLAYBACK);        // Command opcode
   // No parameters
   Wire.endTransmission(true);
@@ -87,12 +87,12 @@ void HapTouch::readbackGeneric(uint8_t readback_index, char* c, uint8_t n)
 {
   int i;
 
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_READBACK);           // Command opcode
   Wire.write(readback_index);
   Wire.endTransmission(true);
 
-  Wire.requestFrom(I2C_SLAVE_ADDR_OF_TCH5E, n);  // Get the Response
+  Wire.requestFrom(_i2c_addr, n);  // Get the Response
   i = 0;
   while (Wire.available() && i < n) {
     c[i++] = Wire.read();
@@ -110,23 +110,23 @@ void HapTouch::readbackPing(char* c) {
 
 // readbackButtonState
 // See section 8.3 of BoosterPack User Guide (slaa616)
-void readbackButtonState(char* c)
+void HapTouch::readbackButtonState(char* c)
 {
-  readbackGeneric(RB_PING, c, 10);  // 8 data bytes plus 2 dummy bytes
+  readbackGeneric(RB_BUTTON_STATE, c, 10);  // 8 data bytes plus 2 dummy bytes
 }
 
 // readbackButtonCounts
 // See section 8.3 of BoosterPack User Guide (slaa616)
-void readbackButtonCounts(char* c)
+void HapTouch::readbackButtonCounts(char* c)
 {
-  readbackGeneric(RB_PING, c, 10);  // 8 data bytes plus 2 dummy bytes
+  readbackGeneric(RB_BUTTON_COUNTS, c, 10);  // 8 data bytes plus 2 dummy bytes
 }
 
 // audioHapticsEnable()
 // See section 6.2.5 in Haptics Library Designer's Guide (slau543)
 uint8_t HapTouch::audioHapticsEnable(uint8_t en)
 {
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_AUDIOHAPTICS_ENABLE);   // Command opcode
   Wire.write(en);                        // 0: Disable, non-zero: Enable
   Wire.endTransmission(true);
@@ -140,7 +140,7 @@ uint8_t HapTouch::audioHapticsConfig(uint8_t midpoint, uint8_t wakeupThreshold,
                            uint8_t inputMin, uint8_t inputMax,
                            uint8_t strengthAtFloor, uint8_t strengthMax)
 {
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_AUDIOHAPTICS_CONFIG);  // Command opcode
   Wire.write(midpoint);
   Wire.write(wakeupThreshold);    // Must be between 0 and (255 - midpoint)
@@ -159,15 +159,14 @@ uint8_t HapTouch::audioHapticsConfig(uint8_t midpoint, uint8_t wakeupThreshold,
 uint16_t HapTouch::enterGameState()
 {
   uint8_t rc[2];
-  int i == 0;
+  int i = 0;
   char c;
 
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(CMD_ENTER_GAME_STATE);  // Command opcode
-  Wire.write(midpoint);
 
-  Wire.requestFrom(I2C_SLAVE_ADDR_OF_TCH5E, 2);  // Get the Response Code
-  while (Wire.available() && i < 2) {
+  Wire.requestFrom((uint8_t) _i2c_addr, (uint8_t) 2);  // Get the Response Code
+  while (Wire.available() && (i < 2)) {
     c = Wire.read();
     if (c != 0x0c) { // If we get WAIT_FOR_RESPONSE, then try again
       rc[i] = c;
@@ -184,7 +183,7 @@ uint16_t HapTouch::enterGameState()
 // See section 8.3 of BoosterPack User Guide (slaa616)
 uint8_t HapTouch::touchTune()
 {
-    Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+    Wire.beginTransmission(_i2c_addr);
     Wire.write(CMD_TOUCHTUNE);        // Command opcode
     // No parameters
     Wire.endTransmission(true);
@@ -201,7 +200,7 @@ uint8_t HapTouch::genericCommand(uint8_t command, uint8_t* params,
 {
   uint8_t i = 0;
 
-  Wire.beginTransmission(I2C_SLAVE_ADDR_OF_TCH5E);
+  Wire.beginTransmission(_i2c_addr);
   Wire.write(command);                // Command ID
   while (i < param_length) {
     Wire.write(params[i++]);   // Write out the parameters
@@ -217,7 +216,7 @@ uint8_t HapTouch::genericCommand(uint8_t command, uint8_t* params,
 // This method would generally not be used in most sketches
 uint8_t HapTouch::getResponseCode() {
   uint8_t c;
-  Wire.requestFrom(I2C_SLAVE_ADDR_OF_TCH5E, 1);  // Get the Response Code
+  Wire.requestFrom((uint8_t) _i2c_addr, (uint8_t) 1);  // Get the Response Code
   while (Wire.available()) {
     c = Wire.read();
     if (c != 0x0c) return (uint8_t) c;    // If we get WAIT_FOR_RESPONSE, then try again
