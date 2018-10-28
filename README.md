@@ -13,19 +13,19 @@ Usage
 -----
 _See the sketch included in the `examples` folder._
 
-First, create a HapTouch object:
+First, **create a HapTouch object**:
 
     HapTouch myHapTouch;
 
 Note that the above constructor has two default parameters: the I2C address of the HapTouch BoosterPack and the I2C module number for the Wire library. The default values are typically the correct values, so the constructor can be called without arguments, but the ability to change those values is available if needed.
 
-Next, initialize the interface:
+Next, **initialize the interface**:
 
     myHapTouch.begin();
 
 This intitializes the I2C interface. It calls Wire.setModule() and Wire.begin(). If you want to initialize I2C separately in your sketch, the above method does not need to be called.
 
-Then, call any of the HapTouch commands as needed for your sketch. These commands are explained in the HapTouch library [designer's guide][3] and in the BoosterPack [user's guide][2]:
+Then, call any of the **HapTouch commands** as needed for your sketch. These commands are explained in the HapTouch library [designer's guide][3] and in the BoosterPack [user's guide][2]:
 
     uint8_t playEffect(uint8_t effect, int duration, uint8_t override);
     uint8_t playSequence(uint8_t* effect_list, int effect_count,
@@ -50,10 +50,10 @@ The following commands are available for experimentation or to access undocument
 
 Operational Notes
 -----------------
-- The HapTouch BoosterPack uses pins 14/15 for the I2C interface. These pins are typically defined as module 0 in Energia for the various BoosterPacks.
-- Since the factory-programmed firmware is still running on the TCH5E controlelr on the BoosterPack, touching the cap-touch buttons will generate the programmed haptic response
-- Some LaunchPads may not be able to supply enough power for the haptic actuators. A symptom of this is if the board resets whenever a haptic effect is played. The ERM actuator uses more power than the LRA, so it may be possible to set the BoosterPack to LRA mode and still use LaunchPad power. As an alternative, it may be necessary to use an external 3V3 power source instead of the LaunchPad regulator.
-- While this library should work with any of the MSP430 LaunchPad variants, the form factors of the smaller boards (like the G2) make it difficult to use the LaunchPad buttons without affecting the CapTouch buttons on the BoosterPack.
+- The HapTouch BoosterPack uses pins 14/15 for the I2C interface. These pins are typically defined as module 0 in Energia for the various BoosterPacks. The default HapTouch constructor sets I2C module 0.
+- Since the factory-programmed firmware is still running on the TCH5E controller on the BoosterPack, touching the cap-touch buttons will generate the factory-programmed haptic response. However, it is possible to disable the CapTouch buttons by scraping away some solder resist on the buttons and the surrounding ground plane and creating a solder bridge between the buttons and ground.
+- Some LaunchPads may not be able to supply enough power for the ERM haptic actuator. A symptom of this is the board resetting whenever a haptic effect is played. Therefore, it is recommended to set the BoosterPack switch to LRA mode when using LaunchPad power. When using the ERM actuator, use an external 3V3 power source that can supply at least 200 mA.
+- This library should work with any of the MSP430 LaunchPad variants. The form factors of the smaller boards (like the G2) make it difficult to use the LaunchPad buttons without affecting the CapTouch buttons on the BoosterPack. In those cases, it is recommended to disable the CapTouch buttons as mentioned above.
 - The BoosterPack includes a 2x3 "Host Connector" with power and I2C signals which can be used to interface with the board instead of using the standard BoosterPack 20/40 pin connector.
 
 Future Enhancements
