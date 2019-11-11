@@ -2,7 +2,7 @@
 
 Library to interface with HapTouch BoosterPack.
 
-https://gitlab.com/Andy4495/HapTouch
+https://github.com/Andy4495/HapTouch
 
 */
 /* Version History

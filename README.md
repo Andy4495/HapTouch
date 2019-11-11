@@ -78,4 +78,4 @@ References
 [6]: https://forum.43oh.com/topic/4786-msp430tch5e-haptouch-is-available/
 [7]: https://www.element14.com/community/roadTests/1268
 [8]: https://www.element14.com/community/docs/DOC-65467/
-[9]: https://gitlab.com/Andy4495/SWI2C
+[9]: https://github.com/Andy4495/SWI2C
