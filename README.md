@@ -5,7 +5,7 @@ This Energia library provides an I2C command interface to the [HapTouch BoosterP
 
 The HapTouch BoosterPack was produced and available through Element14/Newark/Farnell based on a [reference design][1] from Texas Instruments.
 
-The HaptTouch BoosterPacks is no longer supported, although it is possible to find some boards for sale with some diligent searching. An [SDK][4] which was previously available contains details on how to program the TCH5E controller on the BoosterPack and also how to interface with the factory-programmed code on the TCH5E controller with I2C. However, the SDK is [no longer available][5].
+The HapTouch BoosterPacks is no longer supported, although it is possible to find some boards for sale with some diligent searching. An [SDK][4] which was previously available contains details on how to program the TCH5E controller on the BoosterPack and also how to interface with the factory-programmed code on the TCH5E controller with I2C. However, the SDK is [no longer available][5].
 
 This library provides an I2C interface to the BoosterPack based on still-available documentation and experimenting with the BoosterPack.
 
