@@ -29,7 +29,7 @@ HapTouch::HapTouch(uint8_t i2c_module,
 void HapTouch::begin()
 {
   Wire.setModule(_i2c_module);        // G2 need to use I2C on pins 14/15
-  Wire.begin();             // join i2c bus (address optional for master)
+  Wire.begin();             // join i2c bus (address optional for controller)
 }
 
 // playEffect()
