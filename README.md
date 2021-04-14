@@ -70,6 +70,10 @@ References
 + Element14 product [announcement][8].
 + Element14 [product page and road test reviews][7].
 
+License
+-------
+The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
+
 [1]: http://www.ti.com/tool/TIDM-LPBP-HAPTOUCH
 [2]: http://www.ti.com/lit/an/slaa616/slaa616.pdf
 [3]: http://www.ti.com/lit/ug/slau543/slau543.pdf
@@ -79,3 +83,5 @@ References
 [7]: https://www.element14.com/community/roadTests/1268
 [8]: https://www.element14.com/community/docs/DOC-65467/
 [9]: https://github.com/Andy4495/SWI2C
+[100]: https://choosealicense.com/licenses/mit/
+[101]: ./LICENSE
