@@ -1,5 +1,7 @@
-HapTouch BoosterPack Library
-=============================================================================
+# HapTouch BoosterPack Library
+
+[![Arduino Compile Sketches](https://github.com/Andy4495/HapTouch/actions/workflows/arduino-compile-sketches.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/arduino-compile-sketches.yml)
+[![Check Markdown Links](https://github.com/Andy4495/HapTouch/actions/workflows/CheckMarkdownLinks.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/CheckMarkdownLinks.yml)
 
 This Energia library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
@@ -9,8 +11,7 @@ The HapTouch BoosterPacks is no longer supported, although it is possible to fin
 
 This library provides an I2C interface to the BoosterPack based on still-available documentation and experimenting with the BoosterPack.
 
-Usage
------
+## Usage
 
 _See the sketch included in the `examples` folder._
 
@@ -57,8 +58,7 @@ uint8_t genericCommand(uint8_t command, uint8_t* params,
 uint8_t getResponseCode();
 ```
 
-Operational Notes
------------------
+## Operational Notes
 
 - The HapTouch BoosterPack uses pins 14/15 for the I2C interface. These pins are typically defined as module 0 in Energia for the various BoosterPacks. The default HapTouch constructor sets I2C module 0.
 - Since the factory-programmed firmware is still running on the TCH5E controller on the BoosterPack, touching the cap-touch buttons will generate the factory-programmed haptic response. However, it is possible to disable the CapTouch buttons by scraping away some solder resist on the buttons and the surrounding ground plane and creating a solder bridge between the buttons and ground.
@@ -66,13 +66,11 @@ Operational Notes
 - This library should work with any of the MSP430 LaunchPad variants. The form factors of the smaller boards (like the G2) make it difficult to use the LaunchPad buttons without affecting the CapTouch buttons on the BoosterPack. In those cases, it is recommended to disable the CapTouch buttons as mentioned above.
 - The BoosterPack includes a 2x3 "Host Connector" with power and I2C signals which can be used to interface with the board instead of using the standard BoosterPack 20/40 pin connector.
 
-Future Enhancements
--------------------
+## Future Enhancements
 
 - Currently, this library requires the use of the Wire library. A future iteration may include support for a software I2C library (like this [one][9])
 
-References
-----------
+## References
 
 - HapTouch BoosterPack [reference design][1]
 - HapTouch BoosterPack [user guide][2]
@@ -82,8 +80,7 @@ References
 - Element14 product [announcement][8].
 - Element14 [product page and road test reviews][7].
 
-License
--------
+## License
 
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
