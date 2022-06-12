@@ -3,7 +3,7 @@
 [![Arduino Compile Sketches](https://github.com/Andy4495/HapTouch/actions/workflows/arduino-compile-sketches.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/arduino-compile-sketches.yml)
 [![Check Markdown Links](https://github.com/Andy4495/HapTouch/actions/workflows/CheckMarkdownLinks.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/CheckMarkdownLinks.yml)
 
-This Energia library provides an I2C command interface to the [HapTouch BoosterPack][1].
+This library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
 The HapTouch BoosterPack was produced and available through Element14/Newark/Farnell based on a [reference design][1] from Texas Instruments.
 
