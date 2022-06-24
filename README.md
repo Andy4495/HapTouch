@@ -7,7 +7,7 @@ This library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
 The HapTouch BoosterPack was produced and available through Element14/Newark/Farnell based on a [reference design][1] from Texas Instruments.
 
-The HapTouch BoosterPacks is no longer supported, although it is possible to find some boards for sale with some diligent searching. An [SDK][4] which was previously available contains details on how to program the TCH5E controller on the BoosterPack and also how to interface with the factory-programmed code on the TCH5E controller with I2C. However, the SDK is [no longer available][5].
+The HapTouch BoosterPacks are no longer supported. An [SDK][4] contained details on how to program the TCH5E controller on the BoosterPack and also how to interface with the factory-programmed code on the TCH5E controller with I2C. However, the SDK is [no longer available][5].
 
 This library provides an I2C interface to the BoosterPack based on still-available documentation and experimenting with the BoosterPack.
 
@@ -60,7 +60,7 @@ uint8_t getResponseCode();
 
 ## Operational Notes
 
-- The HapTouch BoosterPack uses pins 14/15 for the I2C interface. These pins are typically defined as module 0 in Energia for the various BoosterPacks. The default HapTouch constructor sets I2C module 0.
+- The HapTouch BoosterPack uses pins 14/15 for the I2C interface. These pins are typically defined as module 0 in the MSP board packages. The default HapTouch constructor sets I2C module 0.
 - Since the factory-programmed firmware is still running on the TCH5E controller on the BoosterPack, touching the cap-touch buttons will generate the factory-programmed haptic response. However, it is possible to disable the CapTouch buttons by scraping away some solder resist on the buttons and the surrounding ground plane and creating a solder bridge between the buttons and ground.
 - Some LaunchPads may not be able to supply enough power for the ERM haptic actuator. A symptom of this is the board resetting whenever a haptic effect is played. Therefore, it is recommended to set the BoosterPack switch to LRA mode when using LaunchPad power. When using the ERM actuator, use an external 3V3 power source that can supply at least 200 mA.
 - This library should work with any of the MSP430 LaunchPad variants. The form factors of the smaller boards (like the G2) make it difficult to use the LaunchPad buttons without affecting the CapTouch buttons on the BoosterPack. In those cases, it is recommended to disable the CapTouch buttons as mentioned above.
