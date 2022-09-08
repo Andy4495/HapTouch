@@ -93,6 +93,6 @@ The software and other files in this repository are released under what is commo
 [9]: https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
 [101]: ./LICENSE
-[200]: https://github.com/Andy4495/HapTouch
+[//]: # ([200]: https://github.com/Andy4495/HapTouch)
 
 [//]: # (Dead link from previous version of README: Element14 Product Announcement https://www.element14.com/community/docs/DOC-65467/)
