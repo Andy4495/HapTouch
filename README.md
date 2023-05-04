@@ -84,7 +84,7 @@ uint8_t getResponseCode();
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
 [1]: http://www.ti.com/tool/TIDM-LPBP-HAPTOUCH
-[2]: http://www.ti.com/lit/an/slaa616/slaa616.pdf
+[2]: https://community.element14.com/products/devtools/technicallibrary/m/files/17054
 [3]: http://www.ti.com/lit/ug/slau543/slau543.pdf
 [4]: http://www.ti.com/tool/MSP430-HAPTOUCH-SDK
 [5]: https://e2e.ti.com/support/microcontrollers/msp430/f/166/t/541078
@@ -96,3 +96,4 @@ The software and other files in this repository are released under what is commo
 [//]: # ([200]: https://github.com/Andy4495/HapTouch)
 
 [//]: # (Dead link from previous version of README: Element14 Product Announcement https://www.element14.com/community/docs/DOC-65467/)
+[//]: # ( Old [2] URL: http://www.ti.com/lit/an/slaa616/slaa616.pdf )
