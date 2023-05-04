@@ -84,11 +84,13 @@ uint8_t getResponseCode();
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
 [1]: http://www.ti.com/tool/TIDM-LPBP-HAPTOUCH
+<!-- markdown-link-check-disable-next-line -->
 [2]: https://community.element14.com/products/devtools/technicallibrary/m/files/17054
 [3]: http://www.ti.com/lit/ug/slau543/slau543.pdf
 [4]: http://www.ti.com/tool/MSP430-HAPTOUCH-SDK
 [5]: https://e2e.ti.com/support/microcontrollers/msp430/f/166/t/541078
 [6]: https://forum.43oh.com/topic/4786-msp430tch5e-haptouch-is-available/
+<!-- markdown-link-check-disable-next-line -->
 [7]: https://community.element14.com/products/roadtest/rt/roadtests/396/ti_haptics_enabled_g#pifragment-4100=4&pifragment-4106=7
 [9]: https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
