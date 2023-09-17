@@ -76,7 +76,7 @@ uint8_t getResponseCode();
 - HapTouch BoosterPack [user guide][2]
 - Haptics Library [designer's guide][3]
 - HapTouch [SDK][4]. Note that the SDK is [no longer available][5].
-- 43oh Forum [discussion][6] on the BoosterPack.
+- 43oh Forum [discussion][6] ([archived copy][8]) on the BoosterPack.
 - Element14 [product page and road test reviews][7].
 
 ## License
@@ -89,9 +89,11 @@ The software and other files in this repository are released under what is commo
 [3]: http://www.ti.com/lit/ug/slau543/slau543.pdf
 [4]: http://www.ti.com/tool/MSP430-HAPTOUCH-SDK
 [5]: https://e2e.ti.com/support/microcontrollers/msp430/f/166/t/541078
+<!-- markdown-link-check-disable-next-line -->
 [6]: https://forum.43oh.com/topic/4786-msp430tch5e-haptouch-is-available/
 <!-- markdown-link-check-disable-next-line -->
 [7]: https://community.element14.com/products/roadtest/rt/roadtests/396/ti_haptics_enabled_g#pifragment-4100=4&pifragment-4106=7
+[8]: ./extras/43oh-MSP430TCH5E-HAPTOUCH.pdf
 [9]: https://github.com/Andy4495/SWI2C
 [100]: https://choosealicense.com/licenses/mit/
 [101]: ./LICENSE
