@@ -5,7 +5,7 @@
 
 This library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
-The HapTouch BoosterPack was produced and available through Element14/Newark/Farnell based on a [reference design][1] from Texas Instruments.
+The HapTouch BoosterPack was produced and available through Element14/Newark/Farnell based on a reference design from Texas Instruments.
 
 The HapTouch BoosterPacks are no longer supported. An [SDK][4] contained details on how to program the TCH5E controller on the BoosterPack and also how to interface with the factory-programmed code on the TCH5E controller with I2C. However, the SDK is [no longer available][5].
 
@@ -72,7 +72,7 @@ uint8_t getResponseCode();
 
 ## References
 
-- HapTouch BoosterPack [reference design][1]
+- HapTouch BoosterPack [product page][1] via Farnell
 - HapTouch BoosterPack [user guide][2]
 - Haptics Library [designer's guide][3]
 - HapTouch [SDK][4]. Note that the SDK is [no longer available][5].
@@ -83,7 +83,8 @@ uint8_t getResponseCode();
 
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
-[1]: http://www.ti.com/tool/TIDM-LPBP-HAPTOUCH
+<!-- markdown-link-check-disable-next-line -->
+[1]: https://il.farnell.com/element14/boostxl-haptouch/haptics-boosterpack-for-launchpad/dp/2362893
 <!-- markdown-link-check-disable-next-line -->
 [2]: https://community.element14.com/products/devtools/technicallibrary/m/files/17054
 [3]: http://www.ti.com/lit/ug/slau543/slau543.pdf
@@ -101,3 +102,4 @@ The software and other files in this repository are released under what is commo
 
 [//]: # (Dead link from previous version of README: Element14 Product Announcement https://www.element14.com/community/docs/DOC-65467/)
 [//]: # ( Old [2] URL: http://www.ti.com/lit/an/slaa616/slaa616.pdf )
+[//]: # ([1]: http://www.ti.com/tool/TIDM-LPBP-HAPTOUCH)
