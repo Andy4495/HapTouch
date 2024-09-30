@@ -1,7 +1,7 @@
 # HapTouch BoosterPack Library
 
 [![Arduino Compile Sketches](https://github.com/Andy4495/HapTouch/actions/workflows/arduino-compile-sketches.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/arduino-compile-sketches.yml)
-[![Check Markdown Links](https://github.com/Andy4495/HapTouch/actions/workflows/CheckMarkdownLinks.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/CheckMarkdownLinks.yml)
+[![Check Markdown Links](https://github.com/Andy4495/HapTouch/actions/workflows/check-links.yml/badge.svg)](https://github.com/Andy4495/HapTouch/actions/workflows/check-links.yml)
 
 This library provides an I2C command interface to the [HapTouch BoosterPack][1].
 
@@ -83,16 +83,12 @@ uint8_t getResponseCode();
 
 The software and other files in this repository are released under what is commonly called the [MIT License][100]. See the file [`LICENSE`][101] in this repository.
 
-<!-- markdown-link-check-disable-next-line -->
 [1]: https://il.farnell.com/element14/boostxl-haptouch/haptics-boosterpack-for-launchpad/dp/2362893
-<!-- markdown-link-check-disable-next-line -->
 [2]: https://community.element14.com/products/devtools/technicallibrary/m/files/17054
 [3]: http://www.ti.com/lit/ug/slau543/slau543.pdf
 [4]: http://www.ti.com/tool/MSP430-HAPTOUCH-SDK
 [5]: https://e2e.ti.com/support/microcontrollers/msp430/f/166/t/541078
-<!-- markdown-link-check-disable-next-line -->
 [6]: https://forum.43oh.com/topic/4786-msp430tch5e-haptouch-is-available/
-<!-- markdown-link-check-disable-next-line -->
 [7]: https://community.element14.com/products/roadtest/rt/roadtests/396/ti_haptics_enabled_g#pifragment-4100=4&pifragment-4106=7
 [8]: ./extras/43oh-MSP430TCH5E-HAPTOUCH.pdf
 [9]: https://github.com/Andy4495/SWI2C
