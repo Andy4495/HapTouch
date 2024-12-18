@@ -44,8 +44,6 @@ HapTouch myHapTouch;
 
 void setup() {
 
-  int rc;
-
   Serial.begin(9600);
   pinMode(PUSH2, INPUT_PULLUP);
   pinMode(BOARD_LED, OUTPUT);
@@ -60,7 +58,7 @@ void setup() {
   Serial.print("Readback PING string and length: ");
   Serial.print(readbackString);
   Serial.print(", ");
-  Serial.println(strlen(readbackString));
+  Serial.println((unsigned int) strlen(readbackString));
 
   delay(1000);
 
